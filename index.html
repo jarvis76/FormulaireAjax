@@ -3,8 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulaire Ajax</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script
+            src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
 </head>
+
 <body>
+
+<form method="post">
+    <fieldset id="civilite">
+        <legend>Inscription</legend>
+        <p>
+            <label>Nom</label>
+            <input type="text" name="nom" maxlength="50">
+        </p>
+        <p>
+            <label>Prenom</label>
+            <input type="text" name="prenom" maxlength="50">
+        </p>
+        <p>
+            <label>Mail</label>
+            <input type="text" name="mail" maxlength="50">
+        </p>
+        <p>
+            <label>Mot de passe</label>
+            <input type="password" name="mdp" maxlength="50">
+        </p>
+        <p>
+            <input type="submit" value="envoyer">
+        </p>
+</form>
+
+
+
+
 
 </body>
 </html>
+
+
+<?php
+
+
+
+try {
+
+    $pdo = new PDO('mysql:host=localhost;dbname=formulaireajax', "christopher", "talen", array(
+        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING
+        ));
+    }
+
+catch (PDOException $e)
+    {
+        echo 'Erreur de connexion : ' . $e->getMessage();
+    }
+
+
+$error = array();
+
+if(isset($_POST)) {
+
+
+    $nom = trim(strip_tags($_POST['nom']));
+
+    $prenom = trim(strip_tags($_POST['prenom']));
+
+    $mail = trim(strip_tags($_POST['mail']));
+
+    $mdp = trim(strip_tags($_POST['mdp']));
+
+}
+
+
